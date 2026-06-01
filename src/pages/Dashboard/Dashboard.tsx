@@ -6,7 +6,7 @@ export function Dashboard() {
       <h1 className="text-4xl font-black text-zinc-800">Dashboard</h1>
       <div className="grid grid-cols-3 gap-4 pt-10">
         <div className="cardDash">
-          <h2 className="text-xl font-bold">Faturamento</h2>
+          <h2 className="text-xl font-bold">Faturamento Diario</h2>
           <span className="text-4xl font-semibold font-mono">R$&nbsp; 12,903.09</span>
         </div>
         <div>

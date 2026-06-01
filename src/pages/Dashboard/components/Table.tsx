@@ -9,7 +9,7 @@ export function TableDashboard() {
   ];
 
   return (
-    <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
+    <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl mt-10">
       
       <div className="p-5 border-b border-base-border bg-base-card">
         <h2 className="text-base-title font-semibold text-lg">Próximos Clientes</h2>
