@@ -1,7 +1,105 @@
-export function TableAgenda () {
-    return (
-        <div>
-            
-        </div>
-    )
+import { WhatsappLogoIcon, CheckIcon, TrashIcon } from '@phosphor-icons/react';
+
+export function TableAgenda() {
+  
+  const todosAgendamentos = [
+    {
+      id: 1,
+      horario: "09:00",
+      cliente: "Augusto Moraes",
+      whatsapp: "5511999999999",
+      tatuador: "Gugo",
+      estilo: "Fechamento Blackwork",
+      preco: 1200.00,
+      status: "Confirmado"
+    },
+  ];
+
+  return (
+    <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+           
+            <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">
+              <th className="py-4 px-5 font-semibold">Horário</th>
+              <th className="py-4 px-5 font-semibold">Nome do Cliente</th>
+              <th className="py-4 px-5 font-semibold">Whatsapp</th>
+              <th className="py-4 px-5 font-semibold">Tatuador</th>
+              <th className="py-4 px-5 font-semibold">Estilo da Tattoo</th>
+              <th className="py-4 px-5 font-semibold">Preço</th>
+              <th className="py-4 px-5 font-semibold">Status</th>
+              <th className="py-4 px-5 font-semibold text-right">Ações</th>
+            </tr>
+          </thead>
+          
+          <tbody className="divide-y divide-base-border text-sm">
+            {todosAgendamentos.map((item) => (
+              <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
+                
+                
+                <td className="py-4 px-5 font-bold text-base-title">{item.horario}</td>
+                
+                
+                <td className="py-4 px-5 font-medium text-base-subtitle">{item.cliente}</td>
+                
+                
+                <td className="py-4 px-5">
+                  <a 
+                    href={`https://wa.me/${item.whatsapp}?text=Olá%20${encodeURIComponent(item.cliente)},%20passando%20para%20confirmar%20seu%20horário%20de%20tattoo%20às%20${item.horario}.`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-base-text hover:text-base-success transition-all"
+                  >
+                    <WhatsappLogoIcon size={16} weight="fill" className="text-base-success" />
+                    <span className="underline decoration-base-border hover:decoration-base-success">{item.whatsapp}</span>
+                  </a>
+                </td>
+                
+               
+                <td className="py-4 px-5 text-base-text">{item.tatuador}</td>
+                
+                
+                <td className="py-4 px-5 text-base-text italic">{item.estilo}</td>
+                
+                
+                <td className="py-4 px-5 font-semibold text-base-gold">
+                  R$ {item.preco.toFixed(2).replace('.', ',')}
+                </td>
+                
+                
+                <td className="py-4 px-5">
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${
+                    item.status === 'Confirmado' ? 'bg-base-success/10 text-base-success border-base-success/20' :
+                    item.status === 'Pendente' ? 'bg-base-alert/10 text-base-alert border-base-alert/20' :
+                    'bg-base-error/10 text-base-error border-base-error/20'
+                  }`}>
+                    {item.status}
+                  </span>
+                </td>
+
+                
+                <td className="py-4 px-5 text-right space-x-1.5 whitespace-nowrap">
+                  <button 
+                    title="Confirmar Agendamento"
+                    className="inline-flex items-center justify-center p-2 bg-base-gold hover:bg-base-gold-hover text-base-bg rounded-lg transition-all duration-200"
+                  >
+                    <CheckIcon size={16} weight="bold" />
+                  </button>
+                  
+                  <button 
+                    title="Cancelar Sessão"
+                    className="inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200"
+                  >
+                    <TrashIcon size={16} />
+                  </button>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }

@@ -1,7 +1,11 @@
+import { PesquisaAgenda } from "./components/PesquisaAgenda";
+import { TableAgenda } from "./components/TableAgenda";
+
 export function Agenda() {
     return (
-        <div>
-            <h1>agenda</h1>
+        <div className="flex flex-col gap-10 p-10">
+            <PesquisaAgenda />
+            <TableAgenda />
         </div>
     )
 }
