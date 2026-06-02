@@ -1,9 +1,9 @@
 import { UserIcon, WhatsappLogoIcon, PaintBrushIcon, CurrencyDollarIcon, ClockIcon, CalendarIcon, IdentificationCardIcon } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
+import { ClientContext } from '../../contexts/Contexts';
 
 const createClientFormSchema = z.object({
   clientName: z.string().nonempty('O Nome do Cliente é obrigatório'),
@@ -16,15 +16,21 @@ const createClientFormSchema = z.object({
 })
 
 export function Formulario() {
-  const [output, setOutput] = useState<string>('')
   const {register, handleSubmit, formState:{errors}} = useForm({
     resolver: zodResolver(createClientFormSchema)
   })
 
   type CreateClientFormData = z.infer<typeof createClientFormSchema>
 
+  const context = useContext(ClientContext);
+
+  if (!context) {
+  throw new Error('Formulario deve ser usado dentro de um ClientProvider');
+}
+  const { saveClient } = context
+
   function createClient(data: CreateClientFormData) {
-    setOutput(JSON.stringify(data, null, 2))
+    saveClient(data)
   }
 
   return (
@@ -178,9 +184,7 @@ export function Formulario() {
         </div>
 
       </div>
-      <pre>
-        {output}
-      </pre>
+      
     </form>
   );
 }

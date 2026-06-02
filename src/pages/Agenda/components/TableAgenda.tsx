@@ -1,19 +1,16 @@
 import { WhatsappLogoIcon, CheckIcon, TrashIcon } from '@phosphor-icons/react';
+import { ClientContext } from '../../../contexts/Contexts';
+import { useContext } from 'react';
 
 export function TableAgenda() {
   
-  const todosAgendamentos = [
-    {
-      id: 1,
-      horario: "09:00",
-      cliente: "Augusto Moraes",
-      whatsapp: "5511999999999",
-      tatuador: "Gugo",
-      estilo: "Fechamento Blackwork",
-      preco: 1200.00,
-      status: "Confirmado"
-    },
-  ];
+
+  const context = useContext(ClientContext);
+  
+    if (!context) {
+    throw new Error('Formulario deve ser usado dentro de um ClientProvider');
+  }
+    const { dados, statusChange } = context
 
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
@@ -34,25 +31,25 @@ export function TableAgenda() {
           </thead>
           
           <tbody className="divide-y divide-base-border text-sm">
-            {todosAgendamentos.map((item) => (
+            {dados.map((item) => ( 
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 
                 
-                <td className="py-4 px-5 font-bold text-base-title">{item.horario}</td>
+                <td className="py-4 px-5 font-bold text-base-title">{item.timeTattoo}</td>
                 
                 
-                <td className="py-4 px-5 font-medium text-base-subtitle">{item.cliente}</td>
+                <td className="py-4 px-5 font-medium text-base-subtitle">{item.clientName}</td>
                 
                 
                 <td className="py-4 px-5">
                   <a 
-                    href={`https://wa.me/${item.whatsapp}?text=Olá%20${encodeURIComponent(item.cliente)},%20passando%20para%20confirmar%20seu%20horário%20de%20tattoo%20às%20${item.horario}.`}
+                    href={`https://wa.me/${item.phoneClient}?text=Olá%20${encodeURIComponent(item.clientName)},%20passando%20para%20confirmar%20seu%20horário%20de%20tattoo%20às%20${item.timeTattoo}.`}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1 text-base-text hover:text-base-success transition-all"
                   >
                     <WhatsappLogoIcon size={16} weight="fill" className="text-base-success" />
-                    <span className="underline decoration-base-border hover:decoration-base-success">{item.whatsapp}</span>
+                    <span className="underline decoration-base-border hover:decoration-base-success">{item.phoneClient}</span>
                   </a>
                 </td>
                 
@@ -60,11 +57,11 @@ export function TableAgenda() {
                 <td className="py-4 px-5 text-base-text">{item.tatuador}</td>
                 
                 
-                <td className="py-4 px-5 text-base-text italic">{item.estilo}</td>
+                <td className="py-4 px-5 text-base-text italic">{item.descriptionTattoo}</td>
                 
                 
                 <td className="py-4 px-5 font-semibold text-base-gold">
-                  R$ {item.preco.toFixed(2).replace('.', ',')}
+                  R$ {item.priceTattoo}
                 </td>
                 
                 
@@ -81,6 +78,7 @@ export function TableAgenda() {
                 
                 <td className="py-4 px-5 text-right space-x-1.5 whitespace-nowrap">
                   <button 
+                  onClick={() => statusChange(item.id, 'Confirmado')}
                     title="Confirmar Agendamento"
                     className="inline-flex items-center justify-center p-2 bg-base-gold hover:bg-base-gold-hover text-base-bg rounded-lg transition-all duration-200"
                   >
@@ -88,6 +86,7 @@ export function TableAgenda() {
                   </button>
                   
                   <button 
+                  
                     title="Cancelar Sessão"
                     className="inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200"
                   >

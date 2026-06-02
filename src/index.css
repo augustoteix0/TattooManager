@@ -11,50 +11,37 @@
 
 
 @theme {
-  /* ==========================================
-     FUNDOS E SUPERFÍCIES (ONDE O CONTEÚDO FICA)
-     ========================================== */
-  --color-base-bg: #0E0E11;        /* Fundo geral da tela (Cinza escuro profundo) */
-  --color-base-sidebar: #121215;   /* Fundo do menu lateral esquerdo */
-  --color-base-card: #16161A;      /* Fundo dos blocos: cards de faturamento e tabelas */
-  --color-base-input: #0E0E11;     /* Fundo de onde a atendente digita (Inputs) */
+  
+  --color-base-bg: #0E0E11;         
+  --color-base-sidebar: #121215;   
+  --color-base-card: #16161A;     
+  --color-base-input: #0E0E11;     
 
 
-  /* ==========================================
-     ELEMENTOS VISUAIS E INTERAÇÃO
-     ========================================== */
-  --color-base-border: #232329;    /* Linhas finas que dividem as tabelas e os cards */
-  --color-base-hover: #1F1F24;     /* A cor que acende quando passa o mouse na tabela ou botões */
+ 
+  --color-base-border: #232329;   
+  --color-base-hover: #1F1F24;     
 
 
-  /* ==========================================
-     BOTÕES PRINCIPAIS DE AÇÃO (ESTILO CLARO)
-     ========================================== */
-  --color-base-btn-bg: #FAFAFA;    /* Fundo do botão principal (Branco/Gelo que destaca no escuro) */
-  --color-base-btn-hover: #E4E4E7; /* Cor do botão claro quando passa o mouse por cima */
-  --color-base-btn-text: #09090b;  /* Cor da letra de dentro do botão (Preta para dar contraste) */
+
+  --color-base-btn-bg: #FAFAFA;    
+  --color-base-btn-hover: #E4E4E7;
+  --color-base-btn-text: #09090b; 
 
 
-  /* ==========================================
-     AESTHETIC TATTOO (O DETALHE DOURADO)
-     ========================================== */
-  --color-base-gold: #D4A373;      /* Dourado principal para o Logo, Ícones e Valor do Faturamento */
-  --color-base-gold-hover: #A3700C;/* Dourado mais escuro para quando passar o mouse em links dourados */
+
+  --color-base-gold: #D4A373;    
+  --color-base-gold-hover: #A3700C;
 
 
-  /* ==========================================
-     HIERARQUIA DE TEXTOS (PARA NÃO EMBALHAR A VISTA)
-     ========================================== */
-  --color-base-title: #FAFAFA;     /* Títulos grandes, destaques e números importantes */
-  --color-base-subtitle: #D4D4D8;  /* Nomes dos clientes e textos importantes */
-  --color-base-text: #A1A1AA;      /* Descrição da tattoo, estilo e corpo do texto */
-  --color-base-label: #52525B;     /* Textos apagados, horários, e legendas de formulário */
+ 
+  --color-base-title: #FAFAFA;    
+  --color-base-subtitle: #D4D4D8; 
+  --color-base-text: #A1A1AA;    
+  --color-base-label: #52525B;    
 
 
-  /* ==========================================
-     STATUS DO AGENDAMENTO (SINALIZAÇÃO RÁPIDA)
-     ========================================== */
-  --color-base-success: #34d399;   /* Verde: Para o status "Concluído" */
-  --color-base-alert: #fbbf24;     /* Amarelo: Para o status "Em Andamento" */
-  --color-base-error: #fb7185;     /* Vermelho: Para o status "Cancelado" */
+  --color-base-success: #34d399;  
+  --color-base-alert: #fbbf24;  
+  --color-base-error: #fb7185;    
 }
