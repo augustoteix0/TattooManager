@@ -10,7 +10,7 @@ export function TableAgenda() {
     if (!context) {
     throw new Error('Formulario deve ser usado dentro de um ClientProvider');
   }
-    const { dados, statusChange } = context
+    const { statusChange, handleRemoveClient, dadosFiltrados } = context
 
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
@@ -30,8 +30,8 @@ export function TableAgenda() {
             </tr>
           </thead>
           
-          <tbody className="divide-y divide-base-border text-sm">
-            {dados.map((item) => ( 
+          <tbody className="divide-y divide-base-border text-sm ">
+            {dadosFiltrados.map((item) => ( 
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 
                 
@@ -65,7 +65,7 @@ export function TableAgenda() {
                 </td>
                 
                 
-                <td className="py-4 px-5">
+                <td className="py-4 px-5 w-32 h-16">
                   <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${
                     item.status === 'Confirmado' ? 'bg-base-success/10 text-base-success border-base-success/20' :
                     item.status === 'Pendente' ? 'bg-base-alert/10 text-base-alert border-base-alert/20' :
@@ -76,9 +76,9 @@ export function TableAgenda() {
                 </td>
 
                 
-                <td className="py-4 px-5 text-right space-x-1.5 whitespace-nowrap">
+                <td className="py-4 px-5 text-right space-x-1.5 whitespace-nowrap ">
                   <button 
-                  onClick={() => statusChange(item.id, 'Confirmado')}
+                  onClick={() => statusChange(item.id, item.status === 'Pendente' ? 'Confirmado' : 'Pendente')}
                     title="Confirmar Agendamento"
                     className="inline-flex items-center justify-center p-2 bg-base-gold hover:bg-base-gold-hover text-base-bg rounded-lg transition-all duration-200"
                   >
@@ -86,7 +86,7 @@ export function TableAgenda() {
                   </button>
                   
                   <button 
-                  
+                    onClick={() => handleRemoveClient(item.id)}
                     title="Cancelar Sessão"
                     className="inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200"
                   >

@@ -1,6 +1,8 @@
 import { CalendarIcon, MagnifyingGlassIcon, UserIcon } from "@phosphor-icons/react";
 
 export function PesquisaAgenda() {
+  
+
   return (
     <div>
       <h1 className="text-4xl font-black text-zinc-800">Agenda</h1>
@@ -14,6 +16,8 @@ export function PesquisaAgenda() {
             type="text"
             placeholder="Pesquisar Cliente..."
             className="w-full bg-base-input border border-base-border text-base-title placeholder-base-label rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200"
+            onChange={(e) => setSearchClient(e.target.value)}
+            value={searchClient}
           />
         </div>
 
@@ -24,6 +28,8 @@ export function PesquisaAgenda() {
         <select
           defaultValue=""
           className="w-full bg-base-input border border-base-border text-base-subtitle rounded-lg pl-10 pr-8 py-2 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 appearance-none cursor-pointer"
+          onChange={(e) => setTatuadorSelected(e.target.value)}
+          value={tatuadorSelected}
         >
           <option value="" disabled hidden>Tatuador</option>
           <option value="todos" className="bg-base-card text-base-subtitle">Todos os Profissionais</option>
@@ -48,6 +54,8 @@ export function PesquisaAgenda() {
         <select
           defaultValue=""
           className="w-full bg-base-input border border-base-border text-base-subtitle rounded-lg pl-10 pr-8 py-2 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 appearance-none cursor-pointer"
+          onChange={(e) => setWeek(e.target.value)}
+          value={week}
         >
           <option value="" disabled hidden>Semana</option>
           <option value="hoje" className="bg-base-card text-base-subtitle">Hoje</option>
