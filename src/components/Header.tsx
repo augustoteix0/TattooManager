@@ -4,7 +4,7 @@ import { GaugeIcon, CalendarBlankIcon, NotePencilIcon } from '@phosphor-icons/re
 
 export function Header() {
   return (
-    <div className="w-64 bg-base-sidebar h-screen p-4 flex flex-col gap-2 select-none border-r border-base-border">
+    <div className="w-64 flex-shrink-0 bg-base-sidebar h-screen p-4 flex flex-col gap-2 select-none border-r border-base-border sticky top-0">
     <h1 className='text-xl font-bold text-base-title pb-10'>TattoManager</h1>
 
       <NavLink

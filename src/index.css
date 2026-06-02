@@ -4,6 +4,9 @@
    .cardDash {
       @apply bg-base-card text-base-title p-4 flex flex-col items-center gap-4 rounded-xl 
    }
+   .spanMessage {
+      @apply text-red-500 font-semibold
+   }
 }
 
 
