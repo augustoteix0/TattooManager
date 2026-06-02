@@ -15,7 +15,7 @@ export function TableAgenda() {
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse table-fixed">
           <thead>
            
             <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">

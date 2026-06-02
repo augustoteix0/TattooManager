@@ -1,12 +1,32 @@
 import { CalendarIcon, MagnifyingGlassIcon, UserIcon } from "@phosphor-icons/react";
+import { ClientContext } from "../../../contexts/Contexts";
+import { useContext } from "react";
 
 export function PesquisaAgenda() {
   
+  const context = useContext(ClientContext);
+
+  if (!context) {
+    throw new Error('Formulario deve ser usado dentro de um ClientProvider');
+  }
+
+  const { 
+    searchClient, 
+    setSearchClient, 
+    tatuadorSelected, 
+    setTatuadorSelected, 
+    week, 
+    setWeek 
+  } = context;
+
+  function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+}
 
   return (
     <div>
       <h1 className="text-4xl font-black text-zinc-800">Agenda</h1>
-      <form className="grid grid-cols-3 pt-10 gap-x-3">
+      <form className="grid grid-cols-3 pt-10 gap-x-3" onSubmit={handleSubmit}>
 
         <div className="relative w-full sm:flex-1 ">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-base-label">
@@ -33,11 +53,11 @@ export function PesquisaAgenda() {
         >
           <option value="" disabled hidden>Tatuador</option>
           <option value="todos" className="bg-base-card text-base-subtitle">Todos os Profissionais</option>
-          <option value="seu-pai" className="bg-base-card text-base-subtitle">Gugo</option>
-          <option value="carlos" className="bg-base-card text-base-subtitle">Eddy</option>
-          <option value="carlos" className="bg-base-card text-base-subtitle">Gih</option>
-          <option value="carlos" className="bg-base-card text-base-subtitle">Shira</option>
-          <option value="carlos" className="bg-base-card text-base-subtitle">Eryck</option>
+          <option value="Gugo" className="bg-base-card text-base-subtitle">Gugo</option>
+          <option value="Eddy" className="bg-base-card text-base-subtitle">Eddy</option>
+          <option value="Gih" className="bg-base-card text-base-subtitle">Gih</option>
+          <option value="Shira" className="bg-base-card text-base-subtitle">Shira</option>
+          <option value="Eryck" className="bg-base-card text-base-subtitle">Eryck</option>
         </select>
         
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-base-label">

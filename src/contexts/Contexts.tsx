@@ -19,7 +19,7 @@ interface ContextType {
     id: string,
     novoStatus: "Pendente" | "Confirmado" | "Cancelado",
   ) => void;
-  handleRemoveClient: (id: string) => void
+  handleRemoveClient: (id: string) => void;
   searchClient: string;
   setSearchClient: (value: string) => void;
   tatuadorSelected: string;
@@ -33,9 +33,9 @@ export const ClientContext = createContext<ContextType | undefined>(undefined);
 
 export function ClientProvider({ children }: { children: ReactNode }) {
   const [client, setClient] = useState<ClientData[]>([]);
-  const [searchClient, setSearchClient] = useState('')
-    const [tatuadorSelected, setTatuadorSelected] = useState('')
-    const [week, setWeek] = useState('')
+  const [searchClient, setSearchClient] = useState("");
+  const [tatuadorSelected, setTatuadorSelected] = useState("");
+  const [week, setWeek] = useState("");
 
   function saveClient(data: Omit<ClientData, "id" | "status">) {
     const newClient: ClientData = {
@@ -57,41 +57,47 @@ export function ClientProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  function handleRemoveClient (id: string) {
-    setClient((state) => { 
-     return state.filter((item) => 
-        item.id !== id)
-    })
-}
+  function handleRemoveClient(id: string) {
+    setClient((state) => {
+      return state.filter((item) => item.id !== id);
+    });
+  }
 
-const dadosFiltrados = client.filter((item) => {
-    const clientName = item.clientName.toLowerCase().includes(searchClient.toLowerCase())
+  const dadosFiltrados = client.filter((item) => {
+    const clientName = item.clientName ? item.clientName.toLowerCase() : "";
+    const termoDeBusca = searchClient ? searchClient.toLowerCase() : "";
+    const matchesName = clientName.includes(termoDeBusca);
 
-    const tatuador = tatuadorSelected === '' || tatuadorSelected === 'Todos' ? true : item.tatuador === tatuadorSelected
+    const tatuador =
+      tatuadorSelected === "" || tatuadorSelected === "todos"
+        ? true
+        : item.tatuador === tatuadorSelected;
 
-    const hoje = new Date()
-    const dataTattoo = new Date(item.dateTattoo)
-    let data = true
+    const hoje = new Date();
+    const hojeZerado = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+    const dataTattoo = new Date(item.dateTattoo + 'T00:00:00');
+    let data = true;
 
-    if (week === 'hoje') {
-      data = hoje.toDateString() === dataTattoo.toDateString();
-    } 
-    else if (week === 'semana') {
-    
-      const seteDiasAtras = new Date();
+    if (week === "" || week.toLowerCase() === "todos") {
+      data = true;
+    } else if (week === "hoje") {
+      data = hojeZerado.getTime() === dataTattoo.getTime();
+    } else if (week === "semana") {
+      const seteDiasAtras = new Date(hojeZerado);
       seteDiasAtras.setDate(hoje.getDate() - 7);
-      data = dataTattoo >= seteDiasAtras && dataTattoo <= hoje;
-    } 
-    else if (week === 'mes') {
-     
-      data = hoje.getMonth() === dataTattoo.getMonth() && hoje.getFullYear() === dataTattoo.getFullYear();
+      data = dataTattoo >= seteDiasAtras && dataTattoo <= hojeZerado;
+    } else if (week === "mes") {
+      data =
+        hoje.getMonth() === dataTattoo.getMonth() &&
+        hoje.getFullYear() === dataTattoo.getFullYear();
     }
-    
-    return clientName && tatuador && data;
-  })    
+
+    return matchesName && tatuador && data;
+  });
 
   return (
-    <ClientContext.Provider value={{
+    <ClientContext.Provider
+      value={{
         dados: client,
         saveClient,
         statusChange,
@@ -103,7 +109,8 @@ const dadosFiltrados = client.filter((item) => {
         week,
         setWeek,
         dadosFiltrados,
-      }}>
+      }}
+    >
       {children}
     </ClientContext.Provider>
   );
