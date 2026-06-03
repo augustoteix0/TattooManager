@@ -16,7 +16,7 @@ const createClientFormSchema = z.object({
 })
 
 export function Formulario() {
-  const {register, handleSubmit, formState:{errors}} = useForm({
+  const {register, reset, handleSubmit, formState:{errors}} = useForm({
     resolver: zodResolver(createClientFormSchema)
   })
 
@@ -31,6 +31,7 @@ export function Formulario() {
 
   function createClient(data: CreateClientFormData) {
     saveClient(data)
+    reset()
   }
 
   return (

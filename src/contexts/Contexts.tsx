@@ -109,6 +109,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
         week,
         setWeek,
         dadosFiltrados,
+        
       }}
     >
       {children}
