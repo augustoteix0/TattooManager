@@ -9,7 +9,7 @@ interface ClientData {
   priceTattoo: string;
   timeTattoo: string;
   dateTattoo: string;
-  status: "Pendente" | "Confirmado" | "Cancelado";
+  status: "Pendente" | "Confirmado" | "Cancelado" | "Concluido";
 }
 
 interface ContextType {
@@ -17,7 +17,7 @@ interface ContextType {
   saveClient: (data: ClientData) => void;
   statusChange: (
     id: string,
-    novoStatus: "Pendente" | "Confirmado" | "Cancelado",
+    novoStatus: "Pendente" | "Confirmado" | "Cancelado" | "Concluido",
   ) => void;
   handleRemoveClient: (id: string) => void;
   searchClient: string;
@@ -48,8 +48,10 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 
   function statusChange(
     id: string,
-    novoStatus: "Confirmado" | "Pendente" | "Cancelado",
-  ) {
+    novoStatus: "Confirmado" | "Pendente" | "Cancelado" | "Concluido",
+  ) 
+  
+  {
     setClient((state) =>
       state.map((item) =>
         item.id === id ? { ...item, status: novoStatus } : item,

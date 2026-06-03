@@ -1,12 +1,20 @@
-import { WhatsappLogoIcon, CheckIcon, XIcon } from '@phosphor-icons/react';
+import { WhatsappLogoIcon, CheckIcon } from '@phosphor-icons/react';
+import { ClientContext } from '../../../contexts/Contexts';
+import { useContext } from 'react'
 
 export function TableDashboard() {
-  
-  const agendamentosHoje = [
-    { id: 1, horario: "10:00", cliente: "Augusto Moraes", whatsapp: "5511999999999", tatuador: "Seu Pai", status: "Em Andamento" },
-    { id: 2, horario: "14:30", cliente: "Lucas Souza", whatsapp: "5511888888888", tatuador: "Carlos Tattoo", status: "Confirmado" },
-    { id: 3, horario: "17:00", cliente: "Mariana Costa", whatsapp: "5511777777777", tatuador: "Seu Pai", status: "Concluído" },
-  ];
+
+  const context = useContext(ClientContext);
+    
+      if (!context) {
+      throw new Error('Formulario deve ser usado dentro de um ClientProvider');
+    }
+      const { dadosFiltrados, statusChange } = context
+
+    function handleConclude (id: string) {
+      statusChange(id, 'Concluido')
+    }
+
 
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl mt-10">
@@ -17,7 +25,7 @@ export function TableDashboard() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse table-fixed">
           <thead>
            
             <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">
@@ -29,25 +37,24 @@ export function TableDashboard() {
               <th className="py-4 px-6 font-semibold text-right">Ações</th>
             </tr>
           </thead>
-          
+          {dadosFiltrados.map(item => (
           <tbody className="divide-y divide-base-border text-sm">
-            {agendamentosHoje.map((item) => (
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 
                 
-                <td className="py-4 px-6 font-bold text-base-title">{item.horario}</td>
+                <td className="py-4 px-6 font-bold text-base-title">{item.timeTattoo}</td>
                 
                
-                <td className="py-4 px-6 font-medium text-base-subtitle">{item.cliente}</td>
+                <td className="py-4 px-6 font-medium text-base-subtitle">{item.clientName}</td>
                 
                 
                 <td className="py-4 px-6 text-base-text">{item.tatuador}</td>
                 
                 
                 <td className="py-4 px-6">
-                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
-                    item.status === 'Concluído' ? 'bg-base-success/10 text-base-success border-base-success/20' :
-                    item.status === 'Em Andamento' ? 'bg-base-alert/10 text-base-alert border-base-alert/20' :
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium border cursor-default ${
+                    item.status === 'Confirmado' ? 'bg-base-success/10 text-base-success border-base-success/20' :
+                    item.status === 'Pendente' ? 'bg-base-alert/10 text-base-alert border-base-alert/20' :
                     'bg-base-sidebar text-base-text border-base-border'
                   }`}>
                     {item.status}
@@ -57,7 +64,7 @@ export function TableDashboard() {
                 
                 <td className="py-4 px-6">
                   <a 
-                    href={`https://wa.me/${item.whatsapp}?text=Olá%20${encodeURIComponent(item.cliente)},%20confirmamos%20sua%20sessão%20de%20tattoo%20hoje%20às%20${item.horario}?`}
+                    href={`https://wa.me/${item.phoneClient}?text=Olá%20${encodeURIComponent(item.clientName)},%20confirmamos%20sua%20sessão%20de%20tattoo%20hoje%20às%20${item.timeTattoo}?`}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-base-text hover:text-base-success transition-colors duration-200 text-xs"
@@ -69,21 +76,16 @@ export function TableDashboard() {
 
                 
                 <td className="py-4 px-6 text-right space-x-2">
-                  {item.status !== 'Concluído' && (
-                    <button className="inline-flex items-center gap-1 px-3 py-1.5 bg-base-btn-bg hover:bg-base-btn-hover text-base-btn-text rounded-lg text-xs font-semibold transition-all duration-200 shadow-sm">
+                  {item.status === 'Confirmado' && (
+                    <button onClick={() => handleConclude(item.id)} className="inline-flex items-center gap-1 px-3 py-1.5 bg-base-btn-bg hover:bg-base-btn-hover text-base-btn-text rounded-lg text-xs font-semibold transition-all duration-200 shadow-sm">
                       <CheckIcon size={14} weight="bold" />
                       <span>Concluído</span>
                     </button>
                   )}
-                  <button className="inline-flex items-center gap-1 px-3 py-1.5 bg-transparent hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/30 rounded-lg text-xs font-semibold transition-all duration-200">
-                    <XIcon size={14} weight="bold" />
-                    <span>Desagendou</span>
-                  </button>
                 </td>
-
               </tr>
-            ))}
           </tbody>
+          ))}
         </table>
       </div>
     </div>

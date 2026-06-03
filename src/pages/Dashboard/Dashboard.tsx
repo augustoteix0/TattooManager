@@ -20,7 +20,7 @@ export function Dashboard() {
   
 
   const tattooToday = dados.filter((item) => {
-    if (item.dateTattoo === dataDeHojeFormatada && item.status === "Confirmado") {
+    if (item.dateTattoo === dataDeHojeFormatada && item.status === "Confirmado" || item.status === "Concluido") {
       return true
     } else {
       return false
@@ -31,7 +31,11 @@ export function Dashboard() {
       }, 0)
 
   const todaySessions = dados.filter((item) => {
-    return item.dateTattoo === dataDeHojeFormatada && item.status === 'Confirmado'
+    return item.dateTattoo === dataDeHojeFormatada && item.status === 'Confirmado' || item.status === 'Concluido'
+  }).length
+
+  const concluidos = dados.filter((item) => {
+    return item.status === 'Concluido'
   }).length
 
   return (
@@ -53,7 +57,7 @@ export function Dashboard() {
         <div>
           <div className="cardDash">
             <h2 className="text-xl font-bold">Concluidas</h2>
-            <span className="text-4xl font-semibold font-mono">4</span>
+            <span className="text-4xl font-semibold font-mono">{concluidos}</span>
           </div>
         </div>
       </div>

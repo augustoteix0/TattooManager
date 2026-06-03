@@ -10,7 +10,7 @@ export function TableAgenda() {
     if (!context) {
     throw new Error('Formulario deve ser usado dentro de um ClientProvider');
   }
-    const { statusChange, handleRemoveClient, dadosFiltrados } = context
+    const { statusChange, dadosFiltrados } = context
 
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
@@ -35,7 +35,7 @@ export function TableAgenda() {
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 
                 
-                <td className="py-4 px-5 font-bold text-base-title">{item.timeTattoo}</td>
+                <td className="py-4 px-5 font-bold text-base-title">{item.dateTattoo}</td>
                 
                 
                 <td className="py-4 px-5 font-medium text-base-subtitle">{item.clientName}</td>
@@ -69,6 +69,7 @@ export function TableAgenda() {
                   <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${
                     item.status === 'Confirmado' ? 'bg-base-success/10 text-base-success border-base-success/20' :
                     item.status === 'Pendente' ? 'bg-base-alert/10 text-base-alert border-base-alert/20' :
+                    item.status === 'Concluido' ? 'bg-base-sidebar text-base-text border-base-border' :
                     'bg-base-error/10 text-base-error border-base-error/20'
                   }`}>
                     {item.status}
@@ -86,7 +87,7 @@ export function TableAgenda() {
                   </button>
                   
                   <button 
-                    onClick={() => handleRemoveClient(item.id)}
+                    onClick={() => statusChange(item.id, 'Cancelado')}
                     title="Cancelar Sessão"
                     className="inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200"
                   >
