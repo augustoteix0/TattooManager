@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useEffect, useState, type ReactNode } from "react";
 
 interface ClientData {
   id: string;
@@ -32,7 +32,21 @@ interface ContextType {
 export const ClientContext = createContext<ContextType | undefined>(undefined);
 
 export function ClientProvider({ children }: { children: ReactNode }) {
-  const [client, setClient] = useState<ClientData[]>([]);
+  const [client, setClient] = useState<ClientData[]>(() => {
+    const storageStateJSON = localStorage.getItem('@projeto-tattoo:client-1.0.0')
+    
+    if(storageStateJSON) {
+      return JSON.parse(storageStateJSON)
+    }
+    return []
+  });
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(client)
+
+    localStorage.setItem('@projeto-tattoo:client-1.0.0', stateJSON)
+  }, [client])
+  
   const [searchClient, setSearchClient] = useState("");
   const [tatuadorSelected, setTatuadorSelected] = useState("");
   const [week, setWeek] = useState("");
@@ -96,6 +110,12 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 
     return matchesName && tatuador && data;
   });
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(client)
+
+    localStorage.setItem('@projeto-gugo:dados-filtrados-1.0.0', stateJSON)
+  }, [client])
 
   return (
     <ClientContext.Provider
