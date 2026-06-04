@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
+import { type CreateClientFormData } from '../pages/Formulario/Formulario'
 
 interface ClientData {
   id: string;
@@ -14,7 +15,7 @@ interface ClientData {
 
 interface ContextType {
   dados: ClientData[];
-  saveClient: (data: ClientData) => void;
+  saveClient: (data: CreateClientFormData) => void;
   statusChange: (
     id: string,
     novoStatus: "Pendente" | "Confirmado" | "Cancelado" | "Concluido",
@@ -51,7 +52,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
   const [tatuadorSelected, setTatuadorSelected] = useState("");
   const [week, setWeek] = useState("");
 
-  function saveClient(data: Omit<ClientData, "id" | "status">) {
+  function saveClient(data: CreateClientFormData) {
     const newClient: ClientData = {
       ...data,
       id: crypto.randomUUID(),

@@ -15,12 +15,12 @@ const createClientFormSchema = z.object({
   dateTattoo: z.string().nonempty('A data é obrigatória').regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato de data inválido'),
 })
 
+export type CreateClientFormData = z.infer<typeof createClientFormSchema>
+
 export function Formulario() {
   const {register, reset, handleSubmit, formState:{errors}} = useForm({
     resolver: zodResolver(createClientFormSchema)
   })
-
-  type CreateClientFormData = z.infer<typeof createClientFormSchema>
 
   const context = useContext(ClientContext);
 
