@@ -2,7 +2,11 @@ import { WhatsappLogoIcon, CheckIcon } from '@phosphor-icons/react';
 import { ClientContext } from '../../../contexts/Contexts';
 import { useContext } from 'react'
 
-export function TableDashboard() {
+interface TableDashboardProps {
+  dataDeHojeFormatada: string; 
+}
+
+export function TableDashboard({dataDeHojeFormatada}: TableDashboardProps) {
 
   const context = useContext(ClientContext);
     
@@ -14,6 +18,14 @@ export function TableDashboard() {
     function handleConclude (id: string) {
       statusChange(id, 'Concluido')
     }
+
+    const todaySessions = dadosFiltrados.filter((item) => {
+      if(item.dateTattoo === dataDeHojeFormatada && item.status === 'Confirmado' || item.status === 'Concluido'){
+        return true
+      } else {
+        return false
+      }
+    })
 
 
   return (
@@ -37,7 +49,7 @@ export function TableDashboard() {
               <th className="py-4 px-6 font-semibold text-right">Ações</th>
             </tr>
           </thead>
-          {dadosFiltrados.map(item => (
+          {todaySessions.map(item => (
           <tbody className="divide-y divide-base-border text-sm">
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 

@@ -66,7 +66,7 @@ export function Dashboard() {
         </div>
       </div>
       <div>
-        <TableDashboard />
+        <TableDashboard dataDeHojeFormatada={dataDeHojeFormatada}/>
       </div>
     </div>
   );
