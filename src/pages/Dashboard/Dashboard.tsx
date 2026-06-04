@@ -25,10 +25,14 @@ export function Dashboard() {
     } else {
       return false
     }
-
   }).reduce((acumulador, servico) => {
         return acumulador + Number(servico.priceTattoo)
       }, 0)
+
+  const formatterInvoicing = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
 
   const todaySessions = dados.filter((item) => {
     return item.dateTattoo === dataDeHojeFormatada && item.status === 'Confirmado' || item.status === 'Concluido'
@@ -45,7 +49,7 @@ export function Dashboard() {
         <div className="cardDash">
           <h2 className="text-xl font-bold">Faturamento Diario</h2>
           <span className="text-4xl font-semibold font-mono">
-            R$&nbsp; {tattooToday}
+            {formatterInvoicing.format(tattooToday)}
           </span>
         </div>
         <div>
