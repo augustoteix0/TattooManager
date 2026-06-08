@@ -24,11 +24,11 @@ export function PesquisaAgenda() {
 }
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-4xl font-black text-zinc-800">Agenda</h1>
-      <form className="grid grid-cols-3 pt-10 gap-x-3" onSubmit={handleSubmit}>
+      <form className="grid grid-cols-1 md:grid-cols-3 pt-10 gap-3" onSubmit={handleSubmit}>
 
-        <div className="relative w-full sm:flex-1 ">
+        <div className="relative w-full ">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-base-label">
             <MagnifyingGlassIcon size={20} />
           </span>

@@ -17,8 +17,8 @@ export function TableAgenda() {
 
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse table-fixed">
+      <div className="overflow-x-auto w-full">
+        <table className="w-full text-left border-collapse min-w-[1000px]">
           <thead className="w-40">
             <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">
               <th className="py-4 px-5 font-semibold w-30">Horário</th>
