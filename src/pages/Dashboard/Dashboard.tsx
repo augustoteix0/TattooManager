@@ -43,7 +43,7 @@ export function Dashboard() {
   }).length
 
   return (
-    <div className="p-10">
+    <div className="p-10 w-full max-w-full overflow-hidden">
       <h1 className="text-4xl font-black text-zinc-800">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 md:pt-10">
         <div className="cardDash">
