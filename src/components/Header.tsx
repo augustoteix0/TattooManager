@@ -12,7 +12,7 @@ export function Header() {
   ];
 
   return (
-    <>
+    <div>
       <button 
         className="md:hidden fixed top-4 left-4 z-50 text-base-text"
         onClick={() => setIsOpen(!isOpen)}
@@ -39,7 +39,7 @@ export function Header() {
             key={to}
             to={to}
             className={({ isActive }) => `
-              flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 w-full
+              flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 w-full 
               ${isActive ? 'bg-base-card text-base-title' : 'bg-transparent text-base-text hover:text-base-title'}
             `}
             onClick={() => setIsOpen(false)}
@@ -53,6 +53,6 @@ export function Header() {
           </NavLink>
         ))}
       </div>
-    </>
+    </div>
   );
 }
