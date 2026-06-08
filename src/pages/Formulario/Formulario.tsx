@@ -35,7 +35,7 @@ export function Formulario() {
   }
 
   return (
-    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-10 shadow-xl">
+    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-10 shadow-xl overflow-hidden">
       <div className="mb-8">
         <h1 className="text-4xl font-black text-zinc-800">Agenda um Cliente</h1>
         <p className="text-base-label text-xs mt-1">Insira os dados da sessão para atualizar o dashboard automaticamente.</p>
@@ -150,7 +150,7 @@ export function Formulario() {
               </span>
               <input
                 type="time"
-                className="w-full block w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
+                className="w-full block bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
                 {...register('timeTattoo')}
               />
               {errors.timeTattoo && <span className='spanMessage'>{errors.timeTattoo.message}</span>}
