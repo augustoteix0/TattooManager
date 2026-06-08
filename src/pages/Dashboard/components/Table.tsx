@@ -29,15 +29,15 @@ export function TableDashboard({dataDeHojeFormatada}: TableDashboardProps) {
 
 
   return (
-    <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl mt-10">
+    <div className="bg-base-card border border-base-border rounded-2xl  overflow-hidden w-full shadow-xl mt-10 max-w-full">
       
       <div className="p-5 border-b border-base-border bg-base-card">
         <h2 className="text-base-title font-semibold text-lg">Próximos Clientes</h2>
         <p className="text-base-label text-xs mt-0.5">Gerenciamento de sessões para o dia de hoje.</p>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse table-fixed">
+      <div className="overflow-x-auto w-full">
+        <table className="w-full text-left border-collapse min-w-[800px]">
           <thead>
            
             <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">
@@ -49,8 +49,8 @@ export function TableDashboard({dataDeHojeFormatada}: TableDashboardProps) {
               <th className="py-4 px-6 font-semibold text-right">Ações</th>
             </tr>
           </thead>
-          {todaySessions.map(item => (
           <tbody className="divide-y divide-base-border text-sm">
+          {todaySessions.map(item => (
               <tr key={item.id} className="hover:bg-base-hover transition-colors duration-200">
                 
                 
@@ -96,8 +96,8 @@ export function TableDashboard({dataDeHojeFormatada}: TableDashboardProps) {
                   )}
                 </td>
               </tr>
-          </tbody>
           ))}
+          </tbody>
         </table>
       </div>
     </div>
