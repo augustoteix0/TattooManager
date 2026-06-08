@@ -140,9 +140,9 @@ export function Formulario() {
         </div>
 
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
           
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 w-full">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
@@ -157,7 +157,7 @@ export function Formulario() {
             </div>
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 w-full">
             <label className="text-xs font-semibold text-base-subtitle uppercase tracking-wider">Data</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
