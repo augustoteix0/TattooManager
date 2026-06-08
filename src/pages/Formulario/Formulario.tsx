@@ -35,7 +35,7 @@ export function Formulario() {
   }
 
   return (
-    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-10 shadow-xl overflow-hidden">
+    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-4 md:p-10 shadow-xl overflow-hidden">
       <div className="mb-8">
         <h1 className="text-4xl font-black text-zinc-800">Agenda um Cliente</h1>
         <p className="text-base-label text-xs mt-1">Insira os dados da sessão para atualizar o dashboard automaticamente.</p>
@@ -140,7 +140,7 @@ export function Formulario() {
         </div>
 
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full overflow-hidden">
           
           <div className="space-y-1.5 w-full min-w-0">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
