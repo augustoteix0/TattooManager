@@ -41,7 +41,7 @@ export function Formulario() {
         <p className="text-base-label text-xs mt-1">Insira os dados da sessão para atualizar o dashboard automaticamente.</p>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-5 grid grid-cols-1">
         
        
         <div className="space-y-1.5">
@@ -140,9 +140,9 @@ export function Formulario() {
         </div>
 
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full min-w-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
           
-          <div className="space-y-1.5 w-full min-w-0">
+          <div className="space-y-1.5">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
