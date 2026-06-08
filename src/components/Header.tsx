@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-// Import correto dos componentes da Phosphor
 import { GaugeIcon, CalendarBlankIcon, NotePencilIcon } from '@phosphor-icons/react';
 
 export function Header() {
@@ -45,7 +44,7 @@ export function Header() {
         )}
       </NavLink>
 
-      {/* LINK: FORMULÁRIO */}
+      
       <NavLink
         to="/formulario"
         className={({ isActive }) => `
