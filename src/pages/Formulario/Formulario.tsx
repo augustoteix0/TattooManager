@@ -140,7 +140,7 @@ export function Formulario() {
         </div>
 
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full min-w-0">
           
           <div className="space-y-1.5 w-full min-w-0">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
