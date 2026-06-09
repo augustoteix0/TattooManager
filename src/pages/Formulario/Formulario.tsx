@@ -142,30 +142,26 @@ export function Formulario() {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           
-          <div className="space-y-1.5 min-w-0">
+          <div className="space-y-1.5 w-full">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
-                <ClockIcon size={18} />
-              </span>
+            <div className="flex items-center w-full bg-base-input border border-base-border rounded-xl px-3.5 py-3 focus-within:border-base-gold/50 transition-colors duration-200 overflow-hidden">    
+                <ClockIcon size={18} className="text-base-label shrink-0" />
               <input
                 type="time"
-                className="w-full max-w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
+                className="w-full bg-transparent text-base-title text-sm focus:outline-none appearance-none ml-3"
                 {...register('timeTattoo')}
               />
               {errors.timeTattoo && <span className='spanMessage'>{errors.timeTattoo.message}</span>}
             </div>
           </div>
 
-          <div className="space-y-1.5 min-w-0">
+          <div className="space-y-1.5 w-full">
             <label className="text-xs text-base-card font-bold uppercase tracking-wider">Data</label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
-                <CalendarIcon size={18} />
-              </span>
+            <div className="flex items-center w-full bg-base-input border border-base-border rounded-xl px-3.5 py-3 focus-within:border-base-gold/50 transition-colors duration-200 overflow-hidden">
+                <CalendarIcon size={18} className="text-base-label shrink-0" />
               <input
                 type="date"
-                className="w-full max-w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
+                className="w-full bg-transparent text-base-title text-sm focus:outline-none appearance-none ml-3"
                 {...register('dateTattoo')}
               />
               {errors.dateTattoo && <span className='spanMessage'>{errors.dateTattoo.message}</span>}
