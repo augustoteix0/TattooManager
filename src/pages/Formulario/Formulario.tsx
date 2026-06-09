@@ -142,7 +142,7 @@ export function Formulario() {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 min-w-0">
             <label className="text-xs font-bold text-base-card uppercase tracking-wider">Horário</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
@@ -150,14 +150,14 @@ export function Formulario() {
               </span>
               <input
                 type="time"
-                className="w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
+                className="w-full max-w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
                 {...register('timeTattoo')}
               />
               {errors.timeTattoo && <span className='spanMessage'>{errors.timeTattoo.message}</span>}
             </div>
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 min-w-0">
             <label className="text-xs text-base-card font-bold uppercase tracking-wider">Data</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-base-label">
@@ -165,7 +165,7 @@ export function Formulario() {
               </span>
               <input
                 type="date"
-                className="w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
+                className="w-full max-w-full bg-base-input border border-base-border text-base-title rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-base-gold/50 transition-colors duration-200 cursor-pointer"
                 {...register('dateTattoo')}
               />
               {errors.dateTattoo && <span className='spanMessage'>{errors.dateTattoo.message}</span>}
