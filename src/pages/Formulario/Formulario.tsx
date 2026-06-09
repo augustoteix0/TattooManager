@@ -35,7 +35,7 @@ export function Formulario() {
   }
 
   return (
-    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-4 md:p-10 shadow-xl overflow-hidden">
+    <form onSubmit={handleSubmit(createClient)} className="w-full mx-auto p-4 md:p-10 shadow-xl overflow-hidden mt-10">
       <div className="mb-8">
         <h1 className="text-4xl font-black text-zinc-800">Agenda um Cliente</h1>
         <p className="text-base-label text-xs mt-1">Insira os dados da sessão para atualizar o dashboard automaticamente.</p>
