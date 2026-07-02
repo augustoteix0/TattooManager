@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import { type CreateClientFormData } from '../pages/Formulario/Formulario'
 
-interface ClientData {
+export interface ClientData {
   id: string;
   clientName: string;
   phoneClient: string;
