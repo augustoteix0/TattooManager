@@ -6,6 +6,7 @@ import {
 } from "@phosphor-icons/react";
 import { ClientContext } from "../../../contexts/Contexts";
 import { useContext } from "react";
+import { priceFormatter, dateFormatter } from "../../../utils/formatter";
 
 export function TableAgenda() {
   const context = useContext(ClientContext);
@@ -15,10 +16,12 @@ export function TableAgenda() {
   }
   const { statusChange, dadosFiltrados, handleRemoveClient } = context;
 
+
+
   return (
     <div className="bg-base-card border border-base-border rounded-2xl overflow-hidden w-full shadow-xl">
-      <div className="overflow-x-auto w-full">
-        <table className="w-full text-left border-collapse min-w-[1000px]">
+      <div className="overflow-x-auto w-full ">
+        <table className="w-full text-left border-collapse min-w-[900px] ">
           <thead className="w-40">
             <tr className="border-b border-base-border text-base-label text-xs uppercase tracking-wider bg-base-sidebar/40">
               <th className="py-4 px-5 font-semibold w-30">Horário</th>
@@ -34,12 +37,13 @@ export function TableAgenda() {
 
           <tbody className="divide-y divide-base-border text-sm ">
             {dadosFiltrados.map((item) => (
+
               <tr
                 key={item.id}
                 className="hover:bg-base-hover transition-colors duration-200"
               >
                 <td className="py-4 px-5 font-bold text-base-title">
-                  {item.dateTattoo}
+                  {dateFormatter(item.dateTattoo)}
                 </td>
 
                 <td className="py-4 px-5 font-medium text-base-subtitle">
@@ -71,7 +75,7 @@ export function TableAgenda() {
                 </td>
 
                 <td className="py-4 px-5 font-semibold text-base-gold">
-                  R$ {item.priceTattoo}
+                  {priceFormatter(Number(item.priceTattoo))}
                 </td>
 
                 <td className="py-4 px-5 w-32 h-16">
@@ -92,7 +96,8 @@ export function TableAgenda() {
 
                 <td className="py-4 px-5 text-right space-x-1.5 whitespace-nowrap ">
                   <div className="flex justify-between">
-                    <div className="flex gap-1">
+                    
+                    <div className="flex gap-1">                   
                       <button
                         onClick={() =>
                           statusChange(
@@ -103,14 +108,14 @@ export function TableAgenda() {
                           )
                         }
                         title="Confirmar Agendamento"
-                        className="inline-flex items-center justify-center p-2 bg-base-gold hover:bg-base-gold-hover text-base-bg rounded-lg transition-all duration-200"
+                        className={`inline-flex items-center justify-center p-2 bg-base-gold hover:bg-base-gold-hover text-base-bg rounded-lg transition-all duration-200 ${item.status === 'Concluido' ? 'invisible' : 'inline-flex' }`}
                       >
                         <CheckIcon size={16} weight="bold" />
                       </button>
                       <button
                         onClick={() => statusChange(item.id, "Cancelado")}
                         title="Cancelar Sessão"
-                        className="inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200"
+                        className={`inline-flex items-center justify-center p-2 bg-base-sidebar hover:bg-base-error/10 text-base-text hover:text-base-error border border-base-border hover:border-base-error/20 rounded-lg transition-all duration-200 ${item.status === 'Concluido' ? 'invisible' : 'inline-flex'}`}
                       >
                         <XIcon size={16} />
                       </button>
