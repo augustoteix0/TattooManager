@@ -18,6 +18,7 @@ const items = [
     { to: "/agenda", icon: CalendarBlankIcon, title: "Agenda" },
     { to: "/formulario", icon: NotePencilIcon, title: "Formulário" },
     { to: "/lembrete", icon: BookIcon, title: "Lembrete" },
+    { to: "/financeiro", icon: BookIcon, title: "Financeiro" },
 ]
 
 export function AppSidebar() {

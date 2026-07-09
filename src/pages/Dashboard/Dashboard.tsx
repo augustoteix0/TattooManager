@@ -48,20 +48,20 @@ export function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 md:pt-10">
         <div className="cardDash">
           <h2 className="text-lg md:text-xl font-bold">Faturamento Diario</h2>
-          <span className="text-2xl md:text-4xl font-semibold font-mono">
+          <span className="text-2xl md:text-4xl font-mono">
             {formatterInvoicing.format(tattooToday)}
           </span>
         </div>
         <div>
           <div className="cardDash">
             <h2 className="text-lg md:text-xl font-bold">Sessões Hoje</h2>
-            <span className="text-2xl md:text-4xl font-semibold font-mono">{todaySessions}</span>
+            <span className="text-2xl md:text-4xl  font-mono">{todaySessions}</span>
           </div>
         </div>
         <div>
           <div className="cardDash">
             <h2 className="text-lg md:text-xl font-bold">Concluidas</h2>
-            <span className="text-2xl md:text-4xl font-semibold font-mono">{concluidos}</span>
+            <span className="text-2xl md:text-4xl font-mono">{concluidos}</span>
           </div>
         </div>
       </div>

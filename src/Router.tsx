@@ -4,6 +4,7 @@ import { DefaultLayout } from './layout/DefaultLayout'
 import { Agenda } from './pages/Agenda/Agenda'
 import { Formulario } from './pages/Formulario/Formulario'
 import { LembretePage } from './pages/Lembrete/LembretePage'
+import { Financeiro } from './pages/Financeiro/Financeiro'
 
 export function Router () {
     return (
@@ -13,6 +14,7 @@ export function Router () {
             <Route path='/Agenda' element={<Agenda/>}/>
             <Route path='/Formulario' element={<Formulario/>}/>
             <Route path='/Lembrete' element={<LembretePage/>}/>
+            <Route path='/Financeiro' element={<Financeiro/>}/>
         </Route>
     </Routes>
     )
