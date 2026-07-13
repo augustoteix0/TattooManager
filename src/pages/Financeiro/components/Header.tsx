@@ -94,6 +94,9 @@ export function HeaderFinanceiro() {
             <option value="mes" className="bg-base-card text-base-subtitle">
               Este Mês
             </option>
+            <option value="mesPassado" className="bg-base-card text-base-subtitle">
+              Mês Passado
+            </option>
             <option value="3meses" className="bg-base-card text-base-subtitle">
               Últimos 3 meses
             </option>

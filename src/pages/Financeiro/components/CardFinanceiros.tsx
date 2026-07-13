@@ -48,9 +48,92 @@ export function CardsFinanceiro({ dados }: ContextType) {
     },
   );
 
-  const monthCompatarion = dados.reduce((acc, item) => {
+  const hoje = new Date();
+  const mesAtual = hoje.getMonth();
+  const anoAtual = hoje.getFullYear();
 
-  },0)
+  const dataMesPassado = new Date();
+  dataMesPassado.setMonth(hoje.getMonth() - 1);
+  const mesAnterior = dataMesPassado.getMonth();
+  const anoAnterior = dataMesPassado.getFullYear();
+
+  const faturamentoComparado = dados.reduce(
+    (acc, item) => {
+      if (item.status !== "Confirmado") return acc;
+
+      const valorTattoo = Number(item.priceTattoo) || 0;
+
+      const dataAgendamento = new Date(item.dateTattoo);
+      const mesItem = dataAgendamento.getMonth();
+      const anoItem = dataAgendamento.getFullYear();
+
+      if (mesItem === mesAtual && anoItem === anoAtual) {
+        acc.mesAtual += valorTattoo;
+      }
+
+      if (mesItem === mesAnterior && anoItem === anoAnterior) {
+        acc.mesAnterior += valorTattoo;
+      }
+
+      return acc;
+    },
+    {
+      mesAtual: 0,
+      mesAnterior: 0,
+    },
+  );
+
+  const { mesAtual: faturamentoAtual, mesAnterior: faturamentoAnterior } =
+    faturamentoComparado;
+
+  let diferencaPercentual = 0;
+
+  if (faturamentoAnterior > 0) {
+    diferencaPercentual =
+      ((faturamentoAtual - faturamentoAnterior) / faturamentoAnterior) * 100;
+  } else if (faturamentoAtual > 0) {
+    diferencaPercentual = 100;
+  }
+
+  const ehCrescimentoPositivo = diferencaPercentual >= 0;
+
+  const sessoesComparadas = dados.reduce(
+    (acc, item) => {
+      if (item.status !== "Confirmado") return acc;
+
+      const dataAgendamento = new Date(item.dateTattoo);
+      const mesItem = dataAgendamento.getMonth();
+      const anoItem = dataAgendamento.getFullYear();
+
+      if (mesItem === mesAtual && anoItem === anoAtual) {
+        acc.mesAtual += 1;
+      }
+
+      if (mesItem === mesAnterior && anoItem === anoAnterior) {
+        acc.mesAnterior += 1;
+      }
+
+      return acc;
+    },
+    {
+      mesAtual: 0,
+      mesAnterior: 0,
+    },
+  );
+
+  const { mesAtual: sessoesAtuais, mesAnterior: sessoesAnteriores } =
+    sessoesComparadas;
+
+  let diferencaPercentualSessoes = 0;
+
+  if (sessoesAnteriores > 0) {
+    diferencaPercentualSessoes =
+      ((sessoesAtuais - sessoesAnteriores) / sessoesAnteriores) * 100;
+  } else if (sessoesAtuais > 0) {
+    diferencaPercentualSessoes = 100;
+  }
+
+  const ehCrescimentoSessoesPositivo = diferencaPercentualSessoes >= 0;
 
   return (
     <div className="grid grid-cols-3 gap-4">
@@ -61,15 +144,30 @@ export function CardsFinanceiro({ dados }: ContextType) {
         <CardContent className="text-3xl">
           {priceFormatter(totalFaturado)}
         </CardContent>
-        <CardFooter>+12% que o mês anterior.</CardFooter>
+        <CardFooter>
+          <span
+            className={
+              ehCrescimentoPositivo ? "text-emerald-500" : "text-rose-500"
+            }
+          >
+            {ehCrescimentoPositivo ? "↑" : "↓"}{" "}
+            {Math.abs(diferencaPercentual).toFixed(1)}%
+          </span>{" "}
+          <span className="text-zinc-400 ml-1">em relação ao mês passado</span>
+        </CardFooter>
       </Card>
 
       <Card className="rounded-xl bg-zinc-900 text-white">
         <CardHeader>
           <CardTitle>Sessões Realizadas</CardTitle>
-        </CardHeader>
-        <CardContent className="text-3xl">{totalSessions.length}</CardContent>
-        <CardFooter>5 Sessões à mais que o mês passado.</CardFooter>
+        </CardHeader> 
+        <CardContent className="text-3xl">{totalSessions.length} {totalSessions.length === 1 ? "sessão" : "sessões"}</CardContent>
+        <CardFooter>
+          <span className={ehCrescimentoSessoesPositivo ? "text-emerald-500" : "text-rose-500"}>
+      {ehCrescimentoSessoesPositivo ? "↑" : "↓"} {Math.abs(diferencaPercentualSessoes).toFixed(1)}%
+    </span>{" "}
+    <span className="text-zinc-400 ml-1">em relação ao mês passado</span>
+        </CardFooter>
       </Card>
 
       <Card className="rounded-xl bg-zinc-900 text-white">

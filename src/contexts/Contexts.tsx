@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { type CreateClientFormData } from '../pages/Formulario/Formulario'
+import { type CreateClientFormData } from "../pages/Formulario/Formulario";
 
 export interface ClientData {
   id: string;
@@ -34,20 +34,22 @@ export const ClientContext = createContext<ContextType | undefined>(undefined);
 
 export function ClientProvider({ children }: { children: ReactNode }) {
   const [client, setClient] = useState<ClientData[]>(() => {
-    const storageStateJSON = localStorage.getItem('@projeto-tattoo:client-1.0.0')
-    
-    if(storageStateJSON) {
-      return JSON.parse(storageStateJSON)
+    const storageStateJSON = localStorage.getItem(
+      "@projeto-tattoo:client-1.0.0",
+    );
+
+    if (storageStateJSON) {
+      return JSON.parse(storageStateJSON);
     }
-    return []
+    return [];
   });
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(client)
+    const stateJSON = JSON.stringify(client);
 
-    localStorage.setItem('@projeto-tattoo:client-1.0.0', stateJSON)
-  }, [client])
-  
+    localStorage.setItem("@projeto-tattoo:client-1.0.0", stateJSON);
+  }, [client]);
+
   const [searchClient, setSearchClient] = useState("");
   const [tatuadorSelected, setTatuadorSelected] = useState("");
   const [week, setWeek] = useState("");
@@ -64,9 +66,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
   function statusChange(
     id: string,
     novoStatus: "Confirmado" | "Pendente" | "Cancelado" | "Concluido",
-  ) 
-  
-  {
+  ) {
     setClient((state) =>
       state.map((item) =>
         item.id === id ? { ...item, status: novoStatus } : item,
@@ -91,8 +91,12 @@ export function ClientProvider({ children }: { children: ReactNode }) {
         : item.tatuador === tatuadorSelected;
 
     const hoje = new Date();
-    const hojeZerado = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-    const dataTattoo = new Date(item.dateTattoo + 'T00:00:00');
+    const hojeZerado = new Date(
+      hoje.getFullYear(),
+      hoje.getMonth(),
+      hoje.getDate(),
+    );
+    const dataTattoo = new Date(item.dateTattoo + "T00:00:00");
     let data = true;
 
     if (week === "" || week.toLowerCase() === "todos") {
@@ -107,23 +111,29 @@ export function ClientProvider({ children }: { children: ReactNode }) {
       data =
         hoje.getMonth() === dataTattoo.getMonth() &&
         hoje.getFullYear() === dataTattoo.getFullYear();
-    } else if (week === "3meses") {
-      const tresMesesAtras = new Date(hojeZerado)
-      tresMesesAtras.setMonth(hoje.getMonth() - 3)
-      data = dataTattoo >= tresMesesAtras && dataTattoo <= hojeZerado
-    } else if (week === "anoAtual") {
+    } else if (week === "mesPassado") {
+      const dataMesPassado = new Date(hoje);
+      dataMesPassado.setMonth(hoje.getMonth() - 1);
+
       data =
-        hoje.getFullYear() === dataTattoo.getFullYear();
+        dataTattoo.getMonth() === dataMesPassado.getMonth() &&
+        dataTattoo.getFullYear() === dataMesPassado.getFullYear();
+    } else if (week === "3meses") {
+      const tresMesesAtras = new Date(hojeZerado);
+      tresMesesAtras.setMonth(hoje.getMonth() - 3);
+      data = dataTattoo >= tresMesesAtras && dataTattoo <= hojeZerado;
+    } else if (week === "anoAtual") {
+      data = hoje.getFullYear() === dataTattoo.getFullYear();
     }
 
     return matchesName && tatuador && data;
   });
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(client)
+    const stateJSON = JSON.stringify(client);
 
-    localStorage.setItem('@projeto-gugo:dados-filtrados-1.0.0', stateJSON)
-  }, [client])
+    localStorage.setItem("@projeto-gugo:dados-filtrados-1.0.0", stateJSON);
+  }, [client]);
 
   return (
     <ClientContext.Provider
@@ -139,7 +149,6 @@ export function ClientProvider({ children }: { children: ReactNode }) {
         week,
         setWeek,
         dadosFiltrados,
-        
       }}
     >
       {children}
