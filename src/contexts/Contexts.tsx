@@ -13,7 +13,7 @@ export interface ClientData {
   status: "Pendente" | "Confirmado" | "Cancelado" | "Concluido";
 }
 
-interface ContextType {
+export interface ContextType {
   dados: ClientData[];
   saveClient: (data: CreateClientFormData) => void;
   statusChange: (
@@ -106,6 +106,13 @@ export function ClientProvider({ children }: { children: ReactNode }) {
     } else if (week === "mes") {
       data =
         hoje.getMonth() === dataTattoo.getMonth() &&
+        hoje.getFullYear() === dataTattoo.getFullYear();
+    } else if (week === "3meses") {
+      const tresMesesAtras = new Date(hojeZerado)
+      tresMesesAtras.setMonth(hoje.getMonth() - 3)
+      data = dataTattoo >= tresMesesAtras && dataTattoo <= hojeZerado
+    } else if (week === "anoAtual") {
+      data =
         hoje.getFullYear() === dataTattoo.getFullYear();
     }
 

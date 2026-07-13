@@ -81,6 +81,15 @@ export function PesquisaAgenda() {
           <option value="hoje" className="bg-base-card text-base-subtitle">Hoje</option>
           <option value="semana" className="bg-base-card text-base-subtitle">Esta Semana</option>
           <option value="mes" className="bg-base-card text-base-subtitle">Este Mês</option>
+          <option value="3meses" className="bg-base-card text-base-subtitle">
+              Últimos 3 meses
+            </option>
+            <option
+              value="anoAtual"
+              className="bg-base-card text-base-subtitle"
+            >
+              Ano Atual
+            </option>
           <option value="todos" className="bg-base-card text-base-subtitle">Todo o Histórico</option>
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-base-label">
