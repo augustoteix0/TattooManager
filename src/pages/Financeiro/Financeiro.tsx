@@ -19,7 +19,7 @@ export function Financeiro() {
                 <CardsFinanceiro dados={dadosFiltrados}  />
             </div>
             <div>
-                <ChartFinanceiro />
+                <ChartFinanceiro financeiro={dadosFiltrados}/>
             </div>
         </div>
     )

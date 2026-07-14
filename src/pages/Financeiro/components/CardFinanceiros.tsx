@@ -5,10 +5,14 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
-import type { ContextType } from "../../../contexts/Contexts";
 import { priceFormatter } from "../../../utils/formatter";
+import type { ClientData } from "../../../contexts/Contexts";
 
-export function CardsFinanceiro({ dados }: ContextType) {
+type CardsFinanceiroProps = {
+  dados: ClientData[];
+};
+
+export function CardsFinanceiro({ dados }: CardsFinanceiroProps) {
   const totalFaturado = dados.reduce((acc, itemAtual) => {
     if (itemAtual.status === "Confirmado") {
       return acc + Number(itemAtual.priceTattoo);
